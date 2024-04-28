@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define NB_CARTES_TOTAL 77
 #define NB_CARTES 77
 #define NB_CARTES_PAR_JOUEUR 10
 
@@ -25,6 +26,12 @@ typedef struct {
      int valeurs[NB_CARTES];
 } JeuDeCartes;
 
+typedef struct {
+	int cartes[NB_CARTES_TOTAL];
+	int taille;
+} t_pioche;
+
+
 // Prototypes de fonctions
 JeuDeCartes initialiserJeuDeCartes();
 void melanger(int tab[], int n);
@@ -33,6 +40,7 @@ void afficherDistributionCartes(int nombreJoueurs, int *mains[]);
 void remplirJoueur(t_joueur *joueur, int nombre);
 void demanderNombreJoueurs(int *nombre);
 int LePlusAge(t_joueur *joueur, int nombre);
+int piocherCarte(t_pioche *pioche);
 
 int main() {
     int nb;
@@ -169,19 +177,15 @@ void afficherDistributionCartes(int nombreJoueurs, int *mains[]) {
 }
 
 
-Mettre à jour la pioche et les mains des joueurs??
-typedef struct {
-	int cartes[NB_CARTES_TOTAL];
-	int taille;
-} t_pioche;
+// Mettre à jour la pioche et les mains des joueurs??
 
 t_pioche initialiserPioche() {
     t_pioche pioche;
     pioche.taille = NB_CARTES_TOTAL;
    
     for (int i = 0; i < NB_CARTES_TOTAL; i++) {
-        pioche.cartes[i] = i
-}
+        pioche.cartes[i] = i;
+    }
     return pioche;
 }
 
@@ -191,10 +195,10 @@ int carteDisponible(t_pioche *pioche, int carte) {
     for (int i = 0; i < pioche->taille; i++) 
 {
         if (pioche->cartes[i] == carte) {
-            return true;
+            return 1;
         }
     }
-    return false;
+    return 0;
 }
 
 void retirerCarte(t_pioche *pioche, int carte) {
@@ -208,7 +212,7 @@ void retirerCarte(t_pioche *pioche, int carte) {
     }
 }
 
-void distribuerCartesInitiales(JeuDeCartes *jeu, int *mains[], int nombreJoueurs, t_pioche *pioche) {
+void distribuerCartesInitialesPioche(JeuDeCartes *jeu, int *mains[], int nombreJoueurs, t_pioche *pioche) {
     *pioche = initialiserPioche();
 
     for (int i = 0; i < NB_CARTES_PAR_JOUEUR; i++) {
@@ -223,4 +227,9 @@ void distribuerCartesInitiales(JeuDeCartes *jeu, int *mains[], int nombreJoueurs
         }
     }
 }
+
+int piocherCarte(t_pioche *pioche) {
+    return 0;
+}
+
 
